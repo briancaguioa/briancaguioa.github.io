@@ -4,11 +4,17 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
   <title>Freelancer - Start Bootstrap Theme</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+  <meta name="apple-mobile-web-app-title" content="Hello World"> 
+  <meta name="msapplication-TileImage" content="images/hello-icon-144.png">  
+  <meta name="msapplication-TileColor" content="#FFFFFF">
 
   <!-- Custom fonts for this theme -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -573,6 +579,7 @@
       </div>
     </div>
   </div>
+  <div class="ad2hs-prompt">Install me</div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -601,6 +608,40 @@
       });
     }
   </script>
+
+<script>
+    var deferredPrompt;
+    window.addEventListener('beforeinstallprompt', function (e) {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      showAddToHomeScreen();
+    });
+    function showAddToHomeScreen() {
+      var a2hsBtn = document.querySelector(".ad2hs-prompt");
+      a2hsBtn.style.display = "block";
+      a2hsBtn.addEventListener("click", addToHomeScreen);
+    }
+    function addToHomeScreen() {  var a2hsBtn = document.querySelector(".ad2hs-prompt");  // hide our user interface that shows our A2HS button
+      a2hsBtn.style.display = 'none';  // Show the prompt
+      deferredPrompt.prompt();  // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice
+        .then(function(choiceResult){
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });}
+    var a2hsBtn = document.querySelector(".ad2hs-prompt");
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      a2hsBtn.style.display = 'none';
+    }else{
+      a2hsBtn.style.display = 'block';
+    }
+    </script>
 
 </body>
 

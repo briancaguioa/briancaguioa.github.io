@@ -1,11 +1,6 @@
 {
     "name": "My PWA Test",
     "short_name": "PWA Test",
-    "lang": "en-US",
-    "start_url": "/",
-    "background_color": "#2C3E50",
-    "theme_color": "#18BC9C",
-    "display": "standalone",
     "icons": [
      {
       "src": "android-icon-36x36.png",
@@ -48,5 +43,11 @@
         "sizes": "512x512",
         "type": "image\/png"
       }
-    ]
+    ],
+    "lang": "en-US",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#2C3E50",
+    "theme_color": "#18BC9C"
    }
